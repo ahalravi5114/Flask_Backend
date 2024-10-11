@@ -13,11 +13,6 @@ __pycache__/
 sessions/
 session.json
 
-# Virtual Environment
-venv/
-env/
-.venv/
-
 # Jupyter Notebook
 .ipynb_checkpoints
 
