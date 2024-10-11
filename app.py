@@ -66,6 +66,12 @@ def get_profile():
             'posts': profile.media_count,
         }
 
+        # If the account is a business account, add public email, phone, and domain
+        if profile.is_business:
+            profile_data['email'] = profile.public_email
+            profile_data['phone'] = profile.contact_phone_number
+            profile_data['business_domain'] = profile.contact_website
+
         logger.debug(f"Fetched basic profile data for {username}: {profile_data}")
 
         return jsonify(profile_data), 200
@@ -73,6 +79,7 @@ def get_profile():
     except Exception as e:
         logger.error(f"An unexpected error occurred in get_profile: {str(e)}")
         return jsonify({'error': 'An unexpected error occurred.'}), 500
+
 
 @app.route('/profile/stats', methods=['GET'])
 def get_profile_stats():
